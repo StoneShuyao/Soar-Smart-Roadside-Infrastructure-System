@@ -1,0 +1,6 @@
+departure/
+cmake-build-*/
+build/
+.idea/
+venv/
+*.bin
