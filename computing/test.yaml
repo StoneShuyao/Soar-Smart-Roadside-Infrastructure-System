@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-system
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: test-system
+  template:
+    metadata:
+      labels:
+        run: test-system
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values:
+                - testbed-01
+                - testbed-03
+                - testbed-02
+      restartPolicy: Always
+      hostNetwork: true
+      hostIPC: true
+      containers:
+      - name: test-system
+        image: testbed-master:5000/system:v0.0.1
+        command: ["/bin/sh", "-c"]
+        args: ["/ros_entrypoint.sh"]
+        securityContext:
+          privileged: true
+        volumeMounts:
+          - mountPath: /config
+            name: config-volume
+        resources:
+          limits:
+            nvidia.com/gpu: 1
+      volumes:
+      - name: config-volume
+        hostPath:
+          path: /opt/aiot/config
+          type: Directory
+
+
+        #args: ["/usr/sbin/sshd -D"]
+        #        ports:
+        # - containerPort: 22
+        #  hostPort: 2200
+        # - containerPort: 11511
+        #  hostPort: 11511
