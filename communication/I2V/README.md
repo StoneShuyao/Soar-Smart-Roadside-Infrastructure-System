@@ -7,7 +7,7 @@
 
 ### Install
 - Dependency: `sudo apt install cmake libpcap libpcap-dev`
-- RTL8814au Installation: Follow the [guide](8814au/README.md)
+- RTL8814au Installation: Follow the [guide](https://github.com/StoneShuyao/Soar-Smart-Roadside-Infrastructure-System/tree/main/communication/I2V/8814au/README.md)
 - CMAKE Installation:
     ```
     mkdir build && cd build
