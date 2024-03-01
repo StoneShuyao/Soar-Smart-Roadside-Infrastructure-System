@@ -21,7 +21,9 @@ Set up the connection by running .\local_exe\task_monitor.py between master node
 
 ### Build containers
 
-On edge node,
+Since all our edge nodes are based on the Jetpack 4.6, the container built on one edge node is compatible with all other edge nodes.
+
+On one edge node,
 
 ```bash
 sudo docker build -t testbed-master:5000/system:v0.0.1 -f ./local_exe/Dockerfile .
@@ -33,7 +35,7 @@ After building, push the container to the server,
 sudo docker push testbed-master:5000/system:v0.0.1
 ```
 
-Pull containers from the server,
+Pull containers from the server on each edge node,
 
 ```bash
 sudo docker image list
