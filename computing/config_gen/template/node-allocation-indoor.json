@@ -1,0 +1,36 @@
+{
+    "node1":{
+        "name":"testbed-01",
+        "sensor1":{
+            "sensortype":"1",
+            "tasklists":[
+                "task1"
+            ]
+        },
+        "sensor2":{
+            "sensortype":"2",
+            "tasklists":[
+                "task2"
+            ]
+        }
+    },
+    "node2":{
+        "name":"testbed-02"
+    },
+    "node3":{
+        "name":"testbed-03",
+        "sensor3":{
+            "sensortype":"1",
+            "tasklists":[
+                "task3"
+            ]
+        },
+        "sensor4":{
+            "sensortype":"3",
+            "tasklists":[
+                "task4",
+                "task5"
+            ]
+        }
+    }
+}

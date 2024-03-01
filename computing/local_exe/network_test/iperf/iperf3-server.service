@@ -1,0 +1,10 @@
+[Unit]
+Description=iperf3 server
+After=syslog.target network.target auditd.service
+
+[Service]
+ExecStart=/bin/bash /opt/aiot/iperf/server.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
