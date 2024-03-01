@@ -36,3 +36,9 @@ sudo iw dev $IFACE set channel 36
 - On TX device, run `libroad_tx` with arguments
 - On RX device, run `libroad_rx` with arguments
 - Note: Livox LiDAR should connect to TX device, both TX and RX devices should connect with Wi-Fi adaptors 
+
+### Result
+Next step show how to plot Fig.13 and Fig.17
+- go to directory `result`
+- Dependency: Python3.9 and `pip install -r requirements.txt`
+- Run: `python multicar_plot.py` and `python coding_plot.py`
