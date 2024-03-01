@@ -18,6 +18,9 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <netinet/in.h>
+#include <sys/socket.h>
+#include <sys/un.h>
+#include <unistd.h>
 
 #include "livox_sdk.h"
 
@@ -222,6 +225,23 @@ void OnDeviceBroadcast(const BroadcastDeviceInfo *info) {
     }
 }
 
+void recv_result(int res_sock) {
+    char buffer[1024];
+    while (true) {
+        ssize_t num_bytes = recv(res_sock, buffer, sizeof(buffer)-1, 0);
+        if (num_bytes < 0) {
+            std::cerr << "Failed to receive data" << std::endl;
+            break;
+        }
+        std::unique_lock<std::mutex> lk(mut, std::defer_lock);
+        lk.lock();
+        cv_push.wait(lk, []{ return packet_queue.size() < max_queue_size; });
+        packet_queue.push(buffer);
+        lk.unlock();
+        cv_pop.notify_all();
+    }
+}
+
 int main(int argc, char* argv[]) {
     int opt, mcs = -1, scheme = -1, quiet = 0, nin = -1, nout = -1;
     char iface[100];
@@ -337,6 +357,21 @@ int main(int argc, char* argv[]) {
         addr.sin_port = htons(UDP_PORT);
     }
 
+    int res_sock;
+    res_sock = socket(AF_UNIX, SOCK_DGRAM, 0);
+    struct sockaddr_un server_addr;
+    server_addr.sun_family = AF_UNIX;
+    strncpy(server_addr.sun_path, "/tmp/result.sock", sizeof(server_addr.sun_path) - 1);
+    if (bind(res_sock, (struct sockaddr*)&server_addr, sizeof(server_addr)) == -1) {
+        std::cerr << "Failed to bind socket" << std::endl;
+        close(res_sock);
+        return 1;
+    }
+
+    std::thread res_t(recv_result, res_sock);
+    res_t.start();
+
+
     int cur_size = 0;
     uint8_t* buf;
     auto start = std::chrono::system_clock::now();
@@ -364,5 +399,7 @@ int main(int argc, char* argv[]) {
             cur_size = 0;
         }
     }
+
+    res_t.join();
     return 0;
 }

@@ -7,6 +7,7 @@ import numpy as np
 from model.detect import Detect
 # from utils.crossqueue import CrossQueue
 from inferqueue import InferQueue as CrossQueue
+import socket
 
 logging.basicConfig(
     format='[%(asctime)s] [%(levelname)s] [%(processName)s] [%(threadName)s] : %(message)s',
@@ -56,6 +57,7 @@ class ModelInfer:
             else:
                 self.post_queue = None
         self._load_model()
+        self.sock = socket.socket(socket.AF_UNIX, socket.SOCK_DGRAM)
 
     def run_model_infer(self, start_flag, start_lock, end_flag, end_lock, queue_lock):
         thread_id = self.task_id * 2 + self.mv_flag - 1
@@ -78,6 +80,7 @@ class ModelInfer:
             # for test
             logging.info("Start model for task %d" % self.task_id)
             y = self.model.detect(*x)
+            self.sock.sendto(y.numpy().tobytes(), '/tmp/result.sock')
             if self.model_name == "pointpillar":
                 y = np.concatenate(y, axis=None)
                 self.post_queue.put(y, start_time)
