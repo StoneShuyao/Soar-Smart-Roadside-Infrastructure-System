@@ -202,13 +202,14 @@ int main(int argc, char* argv[]) {
         }
     }
 
-    char hostname[100];
-    gethostname(hostname, 100);
-    if (hostname[0] == 'p') {
-        nodeId = hostname[3] - '0';
-    } else {
-        nodeId = hostname[5] - '0';
-    }
+    // char hostname[100];
+    // gethostname(hostname, 100);
+    // if (hostname[0] == 'p') {
+    //     nodeId = hostname[3] - '0';
+    // } else {
+    //     nodeId = hostname[5] - '0';
+    // }
+    nodeId = 1;
 
     int buf_size = 1362;
     if (cpu) {
