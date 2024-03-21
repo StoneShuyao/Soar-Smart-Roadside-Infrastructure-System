@@ -30,6 +30,8 @@ add_executable(libroad_tx libroad_tx.cpp)
 target_link_libraries(libroad_tx PRIVATE v2x_socket pthread livox_sdk)
 add_executable(libroad_rx libroad_rx.cpp)
 target_link_libraries(libroad_rx PRIVATE v2x_socket)
+add_executable(libroad_tx_demo libroad_tx_demo.cpp)
+target_link_libraries(libroad_tx_demo PRIVATE v2x_socket pthread livox_sdk)
 
 install(TARGETS v2x_socket DESTINATION lib)
 install(FILES include/v2x_socket.h DESTINATION include)
