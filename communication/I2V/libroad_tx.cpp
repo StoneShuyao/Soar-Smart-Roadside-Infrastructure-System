@@ -371,7 +371,7 @@ int main(int argc, char* argv[]) {
     }
 
     std::thread res_t(recv_result, res_sock);
-    res_t.start();
+    // res_t.start();
 
 
     int cur_size = 0;
