@@ -62,6 +62,8 @@ const option long_opts[] = {
         {nullptr, no_argument, nullptr, 0}
 };
 
+const int max_queue_size = 100;
+
 void printHelp()
 {
     std::cout <<
@@ -186,7 +188,7 @@ void OnDeviceInfoChange(const DeviceInfo *info, DeviceEvent type) {
 
 /** Receiving point cloud data from Livox LiDAR. */
 void GetLidarData(uint8_t handle, LivoxEthPacket *data, uint32_t data_num, void *client_data) {
-    const int max_queue_size = 100;
+    // const int max_queue_size = 100;
     static int pktId = 0;
     if (data && data ->data_type == kExtendCartesian) {
         auto tx_buf = new uint8_t[MAX_PACKET_SIZE];
