@@ -238,7 +238,7 @@ void recv_result(int res_sock) {
         std::unique_lock<std::mutex> lk(mut, std::defer_lock);
         lk.lock();
         cv_push.wait(lk, []{ return packet_queue.size() < max_queue_size; });
-        packet_queue.push(buffer);
+        packet_queue.push((uint8_t*)buffer);
         lk.unlock();
         cv_pop.notify_all();
     }
