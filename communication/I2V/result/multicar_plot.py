@@ -6,13 +6,13 @@ import seaborn as sns
 import matplotlib
 
 plt.rcParams["axes.linewidth"] = 1
-matplotlib.rcParams['text.usetex'] = True
-matplotlib.rcParams['text.latex.preamble'] = r"""
-                                         \usepackage{libertine}
-                                         \usepackage[libertine]{newtxmath}
-                                         \usepackage{sfmath}
-                                         \usepackage[T1]{fontenc}
-                                         """
+# matplotlib.rcParams['text.usetex'] = True
+# matplotlib.rcParams['text.latex.preamble'] = r"""
+#                                          \usepackage{libertine}
+#                                          \usepackage[libertine]{newtxmath}
+#                                          \usepackage{sfmath}
+#                                          \usepackage[T1]{fontenc}
+#                                          """
 matplotlib.rcParams['hatch.linewidth'] = 2
 color = sns.color_palette("Set1")
 
