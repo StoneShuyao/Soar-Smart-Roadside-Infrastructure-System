@@ -49,7 +49,7 @@ e.g.,
 sudo ./libroad_tx_demo --scheme our --rate 30 --mcs 3
 ```
 
-- - On the RX side, run `libroad_rx` with arguments that set the receiving scheme (i.e., w/ or w/o network coding), Wi-Fi interface, and the output. 
+- On the RX side, run `libroad_rx` with arguments that set the receiving scheme (i.e., w/ or w/o network coding), Wi-Fi interface, and the output. 
 ```angular2html
 sudo ./libroad_rx --scheme [scheme] --iface [Wi-Fi interface name] --output [output path] --data (whether to save the received data)
 ```
