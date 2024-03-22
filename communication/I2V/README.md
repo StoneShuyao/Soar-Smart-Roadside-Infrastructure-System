@@ -19,8 +19,9 @@
 
 ### Network
 - Install `wpa_supplicant`
-- run `gps.py` to switch between different lamppost
-- prepare `wpa_supplicant-{lamppost id}.conf` for each lamppost
+- Prepare `wpa_supplicant-{lamppost id}.conf` for each lamppost
+- On the receiver side, run `gps.py` to switch between different lamppost
+
 
 ### Turn on the Monitor Mode
 - On both TX and RX device, turn on monitor mode and set the channel. e.g.,
