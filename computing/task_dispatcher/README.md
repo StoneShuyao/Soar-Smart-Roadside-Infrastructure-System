@@ -17,7 +17,7 @@ sensor_install_list = [[], [1, 2], [2], [1, 3], [3], [2, 3], [], [1, 2], [], [1]
 
 - Set the tasks to execute by add config files in the ./config/.
 
-- Manually set the bandwidth map between each pair of Soar nodes in the cluster. 
+- Manually set the bandwidth between each pair of Soar nodes in the cluster. 
 (In real-world experiments, each node periodically measures the I2I bandwidth to others and update it to the server to maintain the bandwidth map)
 ```
 bandwidth_map = dict()
