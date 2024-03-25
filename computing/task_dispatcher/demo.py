@@ -1,9 +1,9 @@
 import copy
 from queue import PriorityQueue
 
-from computing.task_dispatcher.env.edgenode import EdgeNode, Sensor, EdgeNodeNetwork
-from computing.task_dispatcher.utils import taskreader
-from computing.task_dispatcher.utils.taskreader import Task
+from env.edgenode import EdgeNode, Sensor, EdgeNodeNetwork
+from utils import taskreader
+from utils.taskreader import Task
 
 sensor_template = {
     1: Sensor("Lidar", 1, {"frame_size": 400, "fps": 10}, -1),
@@ -12,14 +12,13 @@ sensor_template = {
 }
 
 n_node = 12
+nodes = []
+sensor_install_list = [[], [1, 2], [2], [1, 3], [3], [2, 3], [], [1, 2], [], [1], [2], [1], []]
+
+bandwidth_map = dict()
 bw_link = 1e4
 bw_self = 1e9
 bw_2hops = 1e-9
-
-nodes = []
-sensor_install_list = [[], [1, 2], [2], [1, 3], [3], [2, 3], [], [1, 2], [], [1], [2], [1], []]
-bandwidth_map = dict()
-
 
 def bandwidth_map_setup():
     for i in range(1, n_node + 1):

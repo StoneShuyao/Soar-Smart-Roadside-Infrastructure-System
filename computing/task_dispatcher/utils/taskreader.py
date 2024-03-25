@@ -1,6 +1,6 @@
 import fnmatch
 import os
-from configparser import ConfigParse0r
+from configparser import ConfigParser
 
 import numpy as np
 from dataclasses import dataclass
@@ -93,6 +93,7 @@ class DBReader:
                 node_id=app.node_id,
                 sensor_id=app.sensor_id,
                 miss_bound=app.missbound,
+                opt_batch=1,
                 opt_time=app.opt_time,
                 fps=app.fps,
                 # miss_weight: int = 1
