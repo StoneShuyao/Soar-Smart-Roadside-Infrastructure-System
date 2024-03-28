@@ -1,0 +1,15 @@
+- image-yolo:
+    start_shift: 1
+    period: 100
+    deadline: 340
+    exec_time:
+        full: 35
+        small: 31
+
+- pointpillar:
+    start_shift: 3
+    period: 50
+    deadline: 510
+    exec_time:
+        full: 76
+        small: 66

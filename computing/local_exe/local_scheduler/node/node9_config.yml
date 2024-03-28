@@ -1,0 +1,15 @@
+- yolo:
+    start_shift: 1
+    period: 60
+    deadline: 400
+    exec_time:
+        full: 77
+        small: 42
+
+- pointpillar:
+    start_shift: 3
+    period: 100
+    deadline: 510
+    exec_time:
+        full: 76
+        small: 66
